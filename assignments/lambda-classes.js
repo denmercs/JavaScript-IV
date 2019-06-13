@@ -27,6 +27,12 @@ class Instructor extends Person {
     grade(student, subject) {
         return `${student} receives a perfect score on a ${subject}`;
     }
+
+    // Random grading here
+    gradeRandom(student, grade, subject) {
+        grade = Math.floor(Math.random() * 100) + grade;
+        return `${student}, total grade is ${grade} on his ${subject}`;
+    }
 }
 
 class Student extends Person {
@@ -35,11 +41,12 @@ class Student extends Person {
         this.previousBackground = info.previousBackground;
         this.className = info.className;
         this.favSubjects = info.favSubjects;
+        this.grade = info.grade;
     }
 
     listSubjects() {
         console.log('list of favorite subjects:');
-        return this.favSubjects.forEach((x, index) => console.log(`${index + 1}: ${x}`));
+        this.favSubjects.forEach((subject, index) => console.log(`${index + 1}: ${subject}`));
     }
 
     PRassignment(subject) {
@@ -48,6 +55,15 @@ class Student extends Person {
 
     sprintChallenge(subject) {
         return `${this.name} has begun sprint challenge on ${subject}`;
+    }
+
+    graduate() {
+        if(this.grade <= 70) {
+            return 'Congratulations! You are done with Lambda School!';
+        }
+        else {
+            return 'Please continue to work in your projects';
+        }
     }
 }
 
@@ -78,6 +94,7 @@ const dennis = new Student({
     name: 'Dennis',
     age: 29,
     location: 'Wisconsin',
+    grade: 50,
     previousBackground: 'Health IT',
     className: 'web21',
     favSubjects: ['Javascript', 'HTML', 'CSS', 'Back-end Dev']
@@ -100,3 +117,5 @@ console.log(dennis.PRassignment('Javascript'));
 console.log(dennis.sprintChallenge('Back end dev'));
 console.log(jackie.standup('#web_21'));
 console.log(jackie.debugsCode(dennis.name, 'Javascript'));
+console.log(dan.gradeRandom(dennis.name, dennis.grade, 'Java'));
+console.log(dennis.graduate());
