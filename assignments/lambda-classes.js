@@ -112,7 +112,7 @@ const jackie = new ProjectManager({
 console.log(dan.speak());
 console.log(dan.demo('HTML & CSS'));
 console.log(dan.grade(dennis.name, 'HTML & CSS'));
-console.log(dennis.listSubjects());
+dennis.listSubjects();
 console.log(dennis.PRassignment('Javascript'));
 console.log(dennis.sprintChallenge('Back end dev'));
 console.log(jackie.standup('#web_21'));
