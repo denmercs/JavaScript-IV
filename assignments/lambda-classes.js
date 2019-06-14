@@ -28,11 +28,6 @@ class Instructor extends Person {
         return `${student} receives a perfect score on a ${subject}`;
     }
 
-    // Random grading here
-    gradeRandom(student, grade, subject) {
-        grade = Math.floor(Math.random() * 100) + grade;
-        return `${student}, total grade is ${grade} on his ${subject}`;
-    }
 }
 
 class Student extends Person {
@@ -57,14 +52,22 @@ class Student extends Person {
         return `${this.name} has begun sprint challenge on ${subject}`;
     }
 
+
+    // Random grading here
+    gradeRandom(student, subject) {
+        this.grade = Math.floor(Math.random() * 100);
+        return `${student}, total grade is ${this.grade} on his ${subject}`;
+    }
+
     graduate() {
-        if(this.grade <= 70) {
-            return 'Congratulations! You are done with Lambda School!';
-        }
-        else {
+        if(this.grade < 70) {
             return 'Please continue to work in your projects';
         }
+        else {
+            return `Congratulations! You are done with Lambda School! Your grade is: ${this.grade}`;;
+        }
     }
+
 }
 
 class ProjectManager extends Instructor {
@@ -94,7 +97,7 @@ const dennis = new Student({
     name: 'Dennis',
     age: 29,
     location: 'Wisconsin',
-    grade: 50,
+    grade: 0,
     previousBackground: 'Health IT',
     className: 'web21',
     favSubjects: ['Javascript', 'HTML', 'CSS', 'Back-end Dev']
@@ -117,5 +120,5 @@ console.log(dennis.PRassignment('Javascript'));
 console.log(dennis.sprintChallenge('Back end dev'));
 console.log(jackie.standup('#web_21'));
 console.log(jackie.debugsCode(dennis.name, 'Javascript'));
-console.log(dan.gradeRandom(dennis.name, dennis.grade, 'Java'));
+console.log(dennis.gradeRandom(dennis.name, dennis.grade, "Javascript"));
 console.log(dennis.graduate());
